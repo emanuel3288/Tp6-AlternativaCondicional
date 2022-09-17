@@ -1,0 +1,214 @@
+
+
+/*6. ¿Vamos al banco? - Parte 1
+En este ejercicio utilizaremos el tablero de Gobstones para representar cuentas bancarias. Cada celda
+representará a una cuenta bancaria, y en cada una de ellas puede haber dinero en distintas monedas,
+que representaremos con distintos colores:
+● bolitas negras para pesos argentinos.
+● bolitas verdes para dólares estadounidenses.
+● bolitas azules para euros.
+● bolitas rojas para yuanes chinos.
+Se pueden hacer tres operaciones: depósitos, extracciones y conversiones a divisa extranjera. Las
+extracciones pueden hacerse en cualquier moneda, pero los depósitos siempre serán en pesos.
+En el caso en que se quiera depositar un monto en una moneda extranjera, se aplicará
+automáticamente la conversión a pesos según el precio de venta dado en la siguiente tabla:
+
+
+Precios de venta
+1 dólar 80 pesos
+1 euro 90 pesos
+1 yuan 12 pesos
+En cuanto a la conversión a divisa extranjera, el banco actualmente aplica las siguientes tarifas para la
+compra de divisa:
+Precios de compra
+100 pesos 1 dólar
+115 pesos 1 euro
+17 pesos 1 yuan
+Realizar los siguientes procedimientos para poder manipular la cuenta:
+
+
+a. Depositar_EnMoneda_ComoPesos(cantidadADepositar, moneda), que dada una
+cantidad de dinero a depositar y un color que representa la moneda en la que está representado
+ese monto, agrega a la cuenta la cantidad de pesos equivalente a lo indicado para depositar. En
+este procedimiento hay que aplicar la conversión indicada para el precio de venta*/
+
+program {
+
+    ConvertirHasta_PesosA_(210, Verde)
+}
+/*c. ConvertirHasta_PesosA_(pesosAConvertir, moneda), que dada una cantidad de
+pesos a convertir y un color que representa la moneda en la cual se quiere convertir, remueve
+los pesos de la cuenta y agrega la moneda solicitada. Si en la cuenta hubiera menos pesos de
+lo solicitado, se convierte todo lo que haya.*/
+
+procedure ConvertirHasta_PesosA_(pesosAConvertir, moneda) {
+    /*
+    Propósito:      -Convierte los **pesosAConvertir** en **moneda** de la cuenta bancaria.
+    Precondición:   -El monto de **pesosAConvertir** en **moneda** debe ser igual o superior a 0. //////////////Esta precondicion no iria por el if?
+                    -Los **pesosAConvertir** deben ser igual a un numero entero de la **moneda** de la cuenta bancaria(no se puede pasar a decimal de moneda).
+    Parámetros:
+            **pesosAConvertir**:  -Número.Indíca los **pesosAConvertir** en **moneda** en la cuenta bancaria.
+            **moneda**:           -Color. Indíca el tipo de moneda en la que se van a convertir los pesos de la cuenta bancaria.
+    */
+    if (moneda == hayDolares() && (pesosAConvertir mod 100 == 0)) {
+        Sacar_DeColor_(pesosAConvertir     , Negro )
+        Convertir_En_APesos(pesosAConvertir div 100, moneda)
+    }elseif(moneda == hayEuros()) {
+        Sacar_DeColor_(pesosAConvertir     , Negro )
+        Convertir_En_APesos(pesosAConvertir div 115, moneda)
+    
+    }elseif(moneda == hayEuros()) {
+        Sacar_DeColor_(pesosAConvertir     , Negro  )
+        Convertir_En_APesos(pesosAConvertir div 12,  moneda)
+    }
+}
+
+
+
+// Debería ser condicional
+/*
+b. ExtraerHasta_EnMoneda_(cantidadAExtraer, moneda), que dada una cantidad de
+dinero a extraer y un color que representa la moneda en la que se va a extraer, remueve de la
+cuenta la cantidad que se indica. Si no hubiera tanto dinero como el solicitado, se extrae todo lo
+que haya
+*/
+
+
+//B
+procedure ExtraerHasta_EnMoneda_(cantidadAExtraer, moneda) {
+    /*
+    Propósito:      -Extrae **cantidadAExtraer** en **moneda** de la cuenta bancaria.
+    Precondición:   -Debe existir **cantidadAExtraer** en **moneda** en la cuenta bancaria. 
+    Parámetros:
+            **cantidadAExtraer**:   -Numero. Indíca el monto a extraer en moneda extranjera de la cuenta bancaria.
+            **moneda**:             -Color.  Indíca el tipo de moneda del dinero a sacar de la cuenta bancaria.
+    */
+    ExtraeSiHay_En_(cantidadAExtraer, moneda)
+}
+
+
+procedure ExtraeSiHay_En_(cantidadAExtraer, moneda) {
+    /*
+    Propósito:      -Extrae si hay ***cantidadAExtraer* en **moneda** de la cuenta bancaria.
+    Precondición:   -Ninguna.
+    Parámetros:
+            **cantidadAExtraer**:-Número. Indíca el monto a extraer de la cuenta bancaria.
+            **moneda**:          -Color.  Indíca el tipo de moneda del dinero a extraer de la cuenta bancaria.
+    */ 
+    if(moneda == hayDolares()) {
+        
+        Sacar_DeColor_(cantidadAExtraer, moneda)
+        
+    }elseif(moneda == hayEuros() ) {
+        
+        Sacar_DeColor_(cantidadAExtraer, moneda)
+        
+    }elseif(moneda == hayYuanes()) {
+        
+        Sacar_DeColor_(cantidadAExtraer, moneda)
+    }
+}
+
+
+//a
+procedure Depositar_EnMoneda_ComoPesos(cantidadADepositar, moneda) {
+    /*
+    Propósito:      -Deposita **cantidadADepositar** en **moneda** en la cuenta en pesos argentinos.
+    Precondición:   -La **cantidadADepositar** en **moneda** debe ser superior a 0.
+                    
+    Parámetros:
+            **cantidadADepositar**:  -Numero. Indíca el monto del dinero que se deposita en la cuenta bancaria.
+            **moneda**:              -Color.  Indíca el tipo de moneda del dinero que se deposita en la cuenta bancaria.
+    */
+    if (moneda == hayDolares())   {
+        
+        Convertir_En_APesos(cantidadADepositar*80, Negro)
+        
+    } elseif (moneda == hayEuros()){
+            
+        Convertir_En_APesos(cantidadADepositar*90, Negro)    
+        
+    } elseif(moneda == hayYuanes()){
+            
+        Convertir_En_APesos(cantidadADepositar*12, Negro)
+    }
+}
+
+// generalicè y utilicé un parametro más ya que se repetián los procedimientos.
+procedure Convertir_En_APesos(cantidadDepositada, monedaExtranjera) {
+    /*
+    Propósito:      -Convierte **cantidadDepositada** en **monedaExtranjera** a pesos argentinos en la cuenta actual.
+    Precondición:   -La **cantidadDepositada** en **monedaExtranjera** debe ser superior a 0.
+    Parámetros:
+            **cantidadDepositada**: -Numero. Indíca el monto del dinero que se deposita en la cuenta bancaria.
+            **monedaExtranjera**:   -Color.  Indíca el tipo de moneda del dinero que se deposita en la cuenta bancaria.
+    */
+    Poner_DeColor_(cantidadDepositada, monedaExtranjera)
+}
+
+function hayDolares(){
+    /*
+    Propósito:      -Describe si hay dolares a depositar en la cuenta bancaria.
+    Precondición:   -Ninguna.
+    Resultado:      -Retorna verdadero en el caso de que haya dolares para depositar en la cuenta bancaria.
+    */
+    return(Verde)
+}
+
+function hayEuros(){
+    /*
+    Propósito:      -Describe si hay euros a depositar en la cuenta bancaria.
+    Precondición:   -Ninguna.
+    Resultados:     -Retorna verdadero en el caso de que haya euros para depositar en la cuenta bancaria.
+    */
+    return(Azul)    
+}
+
+function hayYuanes(){
+    /*
+    Propósito:      -Describe si hay yuanes a depositar en la cuenta bancaria.
+    Precondición:   -Ninguna.
+    Resultados:     -Retorna verdadero en el caso de que haya yuanes a depositar en la cuenta bancaria.
+    */
+    return(Rojo)
+}
+
+procedure Poner_DeColor_(cantidadAPoner, colorAPoner) {
+  /*
+  PROPOSITO:    -Poner **cantidadAPoner** de color **colorAPoner** en la celda actual.
+  PRECONDICION: -Ninguna.
+  PARAMETROS:   -**cantidadAPoner**: Numero.Indíca la cantidad de bolitas a poner.
+                -**colorAPoner**:    Color. Indíca el color de la/s bolita/s a poner.
+  */
+  repeat(cantidadAPoner) {
+    Poner(colorAPoner)
+  }
+}
+
+procedure Sacar_DeColor_(cantidadASacar, colorASacar) {
+  /*
+  PROPOSITO:     -Saca **cantidadASacar** bolitas de color **colorASacar** de la celda actual.
+  PRECONDICION:  -Debe existir al menos **cantidadASacar** bolita/s de color **colorASacar**.
+  PARAMETROS:    -**cantidadASacar**: -Numero.Indíca el cantidad de bolitas a sacar de la celda actual.
+                 -**colorASacar**:    -Color. Indíca el color de la bolita a sacar de la celda actual.
+  OBSERVACIONES: La cantidad a sacar debe ser mayor a 0.
+  */
+  repeat(cantidadASacar) {
+    Sacar(colorASacar)
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,70 @@
+/*2. Definiendo mis primeros booleanos
+Definir expresiones que sean verdaderas (describen el valor de verdad Verdadero) para cada uno de los
+siguientes casos.
+a. Cuando la celda actual tiene más de 5 bolitas de color Rojo.
+b. Cuando la celda actual tiene al menos 9 bolitas en total entre rojas y negras.
+c. Cuando la celda actual es la esquina Norte-Este.
+d. Cuando la celda actual está vacía.
+e. Cuando hay una sola celda en el tablero
+*/
+
+
+program {
+    
+    return(hayUnaCeldaEnElTablero())
+}
+
+
+
+
+//A
+function hayMásDe5Rojas(){
+    /*
+    Propòsito:      -Describe si hay más de 5 bolitas rojas en la celda actual.
+    preconcidición: -Ninguna.
+    Resultados:     -Retorna verdadero en el caso de que haya más de 5 bolitas rojas en la celda actual, en caso contrario retorna falso.
+    */
+    return(nroBolitas(Rojo)>5)
+}
+
+
+//B
+function hayMásDe9RojasYNegras(){
+    /*
+    Propòsito:      -Describe si hay 9 bolitas en total entre bolitas rojas y negras en la celda actual.
+    preconcidición: -Ninguna.
+    Resultados:     -Retorna verdadero en el caso de que haya más de 9 bolitas en total entre rojas y negras en la celda actual, en caso contrario retorna falso.
+    */
+    return((nroBolitas(Rojo)+nroBolitas(Negro)) == 9)
+}
+
+//C
+function esLaEsquinaNoresteDelTablero(){
+    /*
+    Propòsito:      -Describe si el cabezal se encuentra en la esquina noreste del tablero.
+    preconcidición: -Ninguna.
+    Resultados:     -Retorna verdadero en el caso de que el cabezal se encuentre en la esquina noreste del tablero, en caso contrario retorna falso.
+    */
+    return(not puedeMover(Norte) && not puedeMover(Este))
+}
+
+//D
+function estáVacíaLaCeldaActual(){
+    /*
+    Propòsito:      -Describe si la celda actual está sin bolitas.
+    preconcidición: -Ninguna.
+    Resultados:     -Retorna verdadero en el caso de que la celda actual se encuentre sin bolitas, en caso contrario retorna falso.
+    */
+    return(not hayBolitas(Rojo) && not hayBolitas(Negro) && not hayBolitas(Azul) && not hayBolitas(Verde))
+}
+
+
+//E
+function hayUnaCeldaEnElTablero(){
+    /*
+    Propòsito:      -Describe si hay una sola celda en el tablero.
+    preconcidición: -Ninguna.
+    Resultados:     -Retorna verdadero en el caso de que haya una sola celda en el tablero, en caso contrario retorna falso.
+    */
+    return(not puedeMover(Norte) && not puedeMover(Este) && not puedeMover(Sur) && not puedeMover(Oeste))
+}
