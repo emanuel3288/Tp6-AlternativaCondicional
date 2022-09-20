@@ -77,8 +77,8 @@ que haya
 //B
 procedure ExtraerHasta_EnMoneda_(cantidadAExtraer, moneda) {
     /*
-    Propósito:      -Extrae **cantidadAExtraer** en **moneda** de la cuenta bancaria.
-    Precondición:   -Debe existir **cantidadAExtraer** en **moneda** en la cuenta bancaria. 
+    Propósito:      -Extrae si hay **cantidadAExtraer** en **moneda** de la cuenta bancaria y sino extrae la cantidad que exista en la cuenta.
+    Precondición:   -Ninguna. 
     Parámetros:
             **cantidadAExtraer**:   -Numero. Indíca el monto a extraer en moneda extranjera de la cuenta bancaria.
             **moneda**:             -Color.  Indíca el tipo de moneda del dinero a sacar de la cuenta bancaria.
@@ -89,14 +89,19 @@ procedure ExtraerHasta_EnMoneda_(cantidadAExtraer, moneda) {
 
 procedure ExtraeSiHay_En_(cantidadAExtraer, moneda) {
     /*
-    Propósito:      -Extrae si hay ***cantidadAExtraer* en **moneda** de la cuenta bancaria.
+    Propósito:      -Extrae si hay ***cantidadAExtraer* en **moneda** de la cuenta bancaria y sino extrae lo que hay.
     Precondición:   -Ninguna.
     Parámetros:
             **cantidadAExtraer**:-Número. Indíca el monto a extraer de la cuenta bancaria.
             **moneda**:          -Color.  Indíca el tipo de moneda del dinero a extraer de la cuenta bancaria.
     */ 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Poner si hay la cantidad  suficiente de la moneda a sacar.
+    // necesito saber la cantidad que necesito sacar.
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     if(moneda == hayDolares()) {
-        
+    
+        // agregar un procedimiento que contenga.
         Sacar_DeColor_(cantidadAExtraer, moneda)
         
     }elseif(moneda == hayEuros() ) {
